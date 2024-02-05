@@ -5,3 +5,4 @@ from random import randrange
 
 def initiateBoard():
     board = []
+#initiated two boards, one user sees with numbers 1-9, and one where computer computes results.
