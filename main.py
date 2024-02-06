@@ -24,9 +24,9 @@ board = '''+-------+-------+-------+
 |   7   |   8   |   9   |
 |       |       |       |
 +-------+-------+-------+'''
-
-userInput = input("place O where: ")
-x = list(board)
-x[boardIndex[userInput]] = "O"
-newString = "".join(x)
-print(newString)
+def userMove():
+    userInput = input("place O where: ")
+    x = list(board)
+    x[boardIndex[userInput]] = "O"
+    newString = "".join(x)
+    print(newString)
