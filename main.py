@@ -32,12 +32,12 @@ print(board)
 
 def userMove():
     userInput = input("place O where: ")
-    
-    checkValid("human", userInput)
-    listBoard[boardIndex[userInput]] = "O"
 
     global updatedBoard
     updatedBoard = "".join(listBoard)
+    checkValid("human", userInput)
+    listBoard[boardIndex[userInput]] = "O"
+    
     print(updatedBoard)
     
     if checkDraw() == "draw":
@@ -53,14 +53,17 @@ def userMove():
 def computerMove():
     computerInput = random.randint(1,9)
 
+    checkValid("computer",computerInput)
     if checkDraw() == "draw":
         print("Draw!")
         return
-    checkValid("computer",computerInput)
+    
     listBoard[boardIndex[str(computerInput)]] = "X"
     updatedBoard = "".join(listBoard)
     print("Computers Move:", computerInput)
     print(updatedBoard)
+    
+    
 
     if checkVictory("computer") == "computer":
         print("Computer Wins!")
@@ -94,11 +97,12 @@ def checkVictory(player):
             return "computer"
             
 def checkDraw():
-    for index in range(1,10):
-        if updatedBoard[boardIndex[str(index)]] in drawChecklist:
+    
+    for i in range(1,10):
+        if updatedBoard[boardIndex[str(i)]] in drawChecklist:
             return
-        else:
-            return "draw"
+    return "draw"
+
              
 def checkValid(player,playerInput): 
     
