@@ -31,7 +31,8 @@ print(board)
 
 def userMove():
     userInput = input("place O where: ")
-
+    
+    checkValid("human",userInput)
     listBoard[boardIndex[userInput]] = "O"
 
     global updatedBoard
@@ -46,6 +47,8 @@ def userMove():
 def computerMove():
     computerInput = random.randint(1,9)
 
+
+    checkValid("computer",computerInput)
     listBoard[boardIndex[str(computerInput)]] = "X"
     updatedBoard = "".join(listBoard)
     print(updatedBoard)
@@ -80,5 +83,14 @@ def checkVictory(player):
              return "computer"
         else:
              return "NoWin"
+             
+def checkValid(player,playerInput): #check if player move is already equal to X or O, if it is, prompt user/computer to enter another input
+    if player == "human":
+        if listBoard[boardIndex[str(playerInput)]] == "X" or "O":
+            print("INVALID MOVE")
+            userMove()
+    elif player == "computer":
+        if listBoard[boardIndex[str(playerInput)]] == "X" or "O":
+            computerMove()
         
 userMove()
